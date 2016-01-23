@@ -70,10 +70,6 @@ public class WaitingRoom extends Activity
         //ArrayAdapter<String> chooseVictimListAdapter = new ArrayAdapter<String>(this, android.R.layout.victim_list_item, )
     }
 
-<<<<<<< HEAD
-    private void generateListContent(int n){
-        for(int i = 0; i < n; i++)
-=======
     protected void createLocationRequest() {
         mLocationRequest = new LocationRequest();
         mLocationRequest.setInterval(10000);
@@ -85,9 +81,8 @@ public class WaitingRoom extends Activity
 
     }
 
-    private void generateListContent(){
-        for(int i = 0; i < 10; i++)
->>>>>>> 6ca04d4c07b019d463f51a6f293df92ca546811a
+    private void generateListContent(int n){
+        for(int i = 0; i < n; i++)
         {
             data.add("this is a row" + i);
         }
