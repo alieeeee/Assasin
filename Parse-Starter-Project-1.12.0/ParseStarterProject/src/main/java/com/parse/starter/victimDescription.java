@@ -4,8 +4,8 @@ import com.parse.ParseClassName;
 import com.parse.ParseObject;
 
 @ParseClassName("Victim Description")
-    public class victimDescription extends ParseObject {
-        public victimDescription(){
+    public class VictimDescription extends ParseObject {
+        public VictimDescription(){
 
         }
         public int getDistance(){
