@@ -12,5 +12,7 @@ public class AssassinActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.assassin_activity);
+
+
     };
 }

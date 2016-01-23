@@ -57,7 +57,7 @@ public class LoginMenu extends ActionBarActivity {
     userNameText = (EditText)findViewById(R.id.editText);
     passwordText = (EditText)findViewById(R.id.editText2);
 
-    loginButton = (Button)findViewById(R.id.button2);
+    cancelButton = (Button)findViewById(R.id.button2);
 
     //username is admin, password is admin
     loginButton.setOnClickListener(new View.OnClickListener(){
@@ -87,7 +87,7 @@ public class LoginMenu extends ActionBarActivity {
 
     cancelButton.setOnClickListener(new View.OnClickListener() {
       @Override
-    public void onClick(View v){
+      public void onClick(View v){
         finish();
       }
     });
