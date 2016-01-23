@@ -1,12 +1,19 @@
 package com.parse.starter;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.RotateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -15,23 +22,42 @@ import android.widget.ImageView;
  */
 public class AssassinActivity extends Activity {
 
-    ImageView arrowPointer;
+    private static final String TAG = "CompassActivity";
+
+    private LocationPointer locationPointer;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.assassin_activity);
 
-        arrowPointer = (ImageView) findViewById(R.id.arrow_picture);
+        locationPointer = new LocationPointer(this);
+        locationPointer.arrowPointer = (ImageView) findViewById(R.id.arrow_picture);
+        };
 
-        final Animation arrowRotate = AnimationUtils.loadAnimation(this, R.anim.arrow_animation);
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d(TAG, "start compass");
+        locationPointer.start();
+    }
 
-        Button btnRotate = (Button) findViewById(R.id.rotate);
+    @Override
+    protected void onPause() {
+        super.onPause();
+        locationPointer.stop();
+    }
 
-        btnRotate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                arrowPointer.startAnimation(arrowRotate);
-            }
-        });
+    @Override
+    protected void onResume() {
+        super.onResume();
+        locationPointer.start();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d(TAG, "stop compass");
+        locationPointer.stop();
+    }
     };
-}
+
