@@ -102,9 +102,10 @@ public class SignUpActivity extends Activity {
                     // Show the error message
                     Toast.makeText(SignUpActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
                 }
-
-                
-
+                else {
+                    // ParseUser
+                    startActivity(new Intent("android.intent.action.LoginPage"));
+                }
             }
         });
 
