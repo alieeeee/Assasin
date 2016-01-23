@@ -2,6 +2,7 @@ package com.parse.starter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.parse.Parse;
+import com.parse.ParseClassName;
+import com.parse.ParseObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +24,6 @@ import java.util.List;
  * Created by kuenj on 1/22/2016.
  */
 public class WaitingRoom extends Activity {
-
     private ArrayList<String> data = new ArrayList<String>();
 
     @Override
@@ -59,6 +63,7 @@ public class WaitingRoom extends Activity {
                     @Override
                     public void onClick(View v) {
                         Toast.makeText(getContext(), "Matching you with victim", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent("android.intent.action.AssassinActivity"));
                     }
                 });
                 convertView.setTag(viewHolder);
@@ -74,3 +79,5 @@ public class WaitingRoom extends Activity {
         Button button;
     }
 }
+
+
