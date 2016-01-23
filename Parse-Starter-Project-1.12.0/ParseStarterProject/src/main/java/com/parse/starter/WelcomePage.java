@@ -62,6 +62,14 @@ public class WelcomePage extends ActionBarActivity{
             }
         });
 
+        signup.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                //opens new Activity
+                startActivity(new Intent("android.intent.action.SignUpActivity"));
+            }
+        });
+
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
