@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:descendantFocusability="blocksDescendants">
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:text="Information"
+        android:id="@+id/victim_item_btn"
+        android:layout_alignParentRight = "true"
+        android:background="@android:color/transparent"/>
+</RelativeLayout>
