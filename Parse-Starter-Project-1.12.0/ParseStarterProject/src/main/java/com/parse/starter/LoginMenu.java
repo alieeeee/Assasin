@@ -11,33 +11,21 @@ package com.parse.starter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.parse.LogInCallback;
 import com.parse.ParseAnalytics;
+import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.ParseUser;
 
-import android.app.Activity;
-import android.graphics.Color;
-import android.os.Bundle;
-
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-
-import static android.graphics.Color.RED;
 
 public class LoginMenu extends ActionBarActivity {
 
@@ -62,26 +50,30 @@ public class LoginMenu extends ActionBarActivity {
     //username is admin, password is admin
     loginButton.setOnClickListener(new View.OnClickListener(){
       @Override
-    public void onClick(View v) {
-        if(userNameText.getText().toString().equals("admin") &&
-                passwordText.getText().toString().equals("admin")){
-          Toast.makeText(getApplicationContext(), "Redirecting...", Toast.LENGTH_SHORT).show();
+      public void onClick(View v) {
 
-          //opens new Activity
-          startActivity(new Intent("android.intent.action.WaitingRoom"));
+        ParseUser.logInInBackground(userNameText.getText().toString(), passwordText.getText().toString(), new LogInCallback() {
+          @Override
+          public void done(ParseUser user, ParseException e) {
+            Toast.makeText(getApplicationContext(), "Redirecting...", Toast.LENGTH_SHORT).show();
 
-        }
-        else{
-          Toast.makeText(getApplicationContext(), "Wrong Credentials", Toast.LENGTH_SHORT).show();
+            if (e != null) {
+              Toast.makeText(getApplicationContext(), "Wrong Credentials", Toast.LENGTH_SHORT).show();
 
-          tx1.setVisibility(View.VISIBLE);
-          counter--;
-          tx1.setText(Integer.toString(counter));
+              tx1.setVisibility(View.VISIBLE);
+              counter--;
+              tx1.setText(Integer.toString(counter));
 
-          if(counter == 0){
-            loginButton.setEnabled(false);
+              if(counter == 0) {
+                loginButton.setEnabled(false);
+              }
+            }
+            else{
+              startActivity(new Intent("android.intent.action.WaitingRoom"));
+            }
           }
-        }
+
+        });
       }
     });
 

@@ -11,33 +11,10 @@ package com.parse.starter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.view.Display;
-import android.view.Menu;
-import android.view.MenuItem;
-
-import com.parse.ParseAnalytics;
-import com.parse.ParseObject;
-
-import android.app.Activity;
-import android.graphics.Color;
-import android.os.Bundle;
-
-import android.view.Menu;
-import android.view.MenuItem;
+import com.parse.ParseUser;
 import android.view.View;
 
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-
-import static android.graphics.Color.RED;
 
 /**
  * Created by Austin on 2016-01-23.
@@ -47,7 +24,8 @@ public class WelcomePage extends ActionBarActivity{
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        currentUser.logOut();
         setContentView(R.layout.welcome_page);
 
         login = (Button) findViewById(R.id.loginButton);
