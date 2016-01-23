@@ -47,7 +47,6 @@ public class LoginMenu extends ActionBarActivity {
 
     cancelButton = (Button)findViewById(R.id.button2);
 
-    //username is admin, password is admin
     loginButton.setOnClickListener(new View.OnClickListener(){
       @Override
       public void onClick(View v) {

@@ -26,13 +26,14 @@ public class WaitingRoom extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.waiting_room);
         ListView victimList = (ListView) findViewById(R.id.chooseVictimList);
-        generateListContent();
+
+        generateListContent(10);
         victimList.setAdapter(new MyListAdapter(this, R.layout.victim_list_item, data));
         //ArrayAdapter<String> chooseVictimListAdapter = new ArrayAdapter<String>(this, android.R.layout.victim_list_item, )
     }
 
-    private void generateListContent(){
-        for(int i = 0; i < 10; i++)
+    private void generateListContent(int n){
+        for(int i = 0; i < n; i++)
         {
             data.add("this is a row" + i);
         }
