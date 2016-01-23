@@ -103,7 +103,7 @@ public class SignUpActivity extends Activity {
                     Toast.makeText(SignUpActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
                 }
                 else {
-                    ParseUser
+                    // ParseUser
                     startActivity(new Intent("android.intent.action.LoginPage"));
                 }
             }
