@@ -41,8 +41,8 @@ import static android.graphics.Color.RED;
 
 public class LoginMenu extends ActionBarActivity {
 
-  Button b1, b2;
-  EditText ed1, ed2;
+  Button loginButton, cancelButton;
+  EditText userNameText, passwordText;
 
   TextView tx1;
   int counter = 3;
@@ -53,18 +53,18 @@ public class LoginMenu extends ActionBarActivity {
     //bottom line of code links this .java file to the activity_mail.xml file
     setContentView(R.layout.activity_main);
 
-    b1 = (Button)findViewById(R.id.button);
-    ed1 = (EditText)findViewById(R.id.editText);
-    ed2 = (EditText)findViewById(R.id.editText2);
+    loginButton = (Button)findViewById(R.id.button);
+    userNameText = (EditText)findViewById(R.id.editText);
+    passwordText = (EditText)findViewById(R.id.editText2);
 
-    b2 = (Button)findViewById(R.id.button2);
+    loginButton = (Button)findViewById(R.id.button2);
 
     //username is admin, password is admin
-    b1.setOnClickListener(new View.OnClickListener(){
+    loginButton.setOnClickListener(new View.OnClickListener(){
       @Override
     public void onClick(View v) {
-        if(ed1.getText().toString().equals("admin") &&
-                ed2.getText().toString().equals("admin")){
+        if(userNameText.getText().toString().equals("admin") &&
+                passwordText.getText().toString().equals("admin")){
           Toast.makeText(getApplicationContext(), "Redirecting...", Toast.LENGTH_SHORT).show();
 
           //opens new Activity
@@ -79,13 +79,13 @@ public class LoginMenu extends ActionBarActivity {
           tx1.setText(Integer.toString(counter));
 
           if(counter == 0){
-            b1.setEnabled(false);
+            loginButton.setEnabled(false);
           }
         }
       }
     });
 
-    b2.setOnClickListener(new View.OnClickListener() {
+    cancelButton.setOnClickListener(new View.OnClickListener() {
       @Override
     public void onClick(View v){
         finish();
