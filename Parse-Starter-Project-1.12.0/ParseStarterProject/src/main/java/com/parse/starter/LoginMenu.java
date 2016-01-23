@@ -58,15 +58,7 @@ public class LoginMenu extends ActionBarActivity {
             Toast.makeText(getApplicationContext(), "Redirecting...", Toast.LENGTH_SHORT).show();
 
             if (e != null) {
-              Toast.makeText(getApplicationContext(), "Wrong Credentials", Toast.LENGTH_SHORT).show();
-
-              tx1.setVisibility(View.VISIBLE);
-              counter--;
-              tx1.setText(Integer.toString(counter));
-
-              if(counter == 0) {
-                loginButton.setEnabled(false);
-              }
+              Toast.makeText(LoginMenu.this, e.getMessage(), Toast.LENGTH_LONG).show();
             }
             else{
               startActivity(new Intent("android.intent.action.WaitingRoom"));
