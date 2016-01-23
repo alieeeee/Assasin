@@ -9,7 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.parse.Parse;
 import com.parse.ParseException;
+import com.parse.ParseGeoPoint;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
@@ -92,6 +94,7 @@ public class SignUpActivity extends Activity {
         ParseUser user = new ParseUser();
         user.setUsername(username);
         user.setPassword(password);
+
 
         // Call the Parse signup method
         user.signUpInBackground(new SignUpCallback() {

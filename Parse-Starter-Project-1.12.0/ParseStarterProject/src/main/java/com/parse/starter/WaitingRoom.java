@@ -21,7 +21,9 @@ import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.parse.LogInCallback;
+import com.parse.Parse;
 import com.parse.ParseException;
+import com.parse.ParseGeoPoint;
 import com.parse.ParseUser;
 
 import java.text.DateFormat;
@@ -72,8 +74,8 @@ public class WaitingRoom extends Activity
 
     protected void createLocationRequest() {
         mLocationRequest = new LocationRequest();
-        mLocationRequest.setInterval(10000);
-        mLocationRequest.setFastestInterval(5000);
+        mLocationRequest.setInterval(2000);
+        mLocationRequest.setFastestInterval(1000);
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
     }
 
@@ -94,6 +96,7 @@ public class WaitingRoom extends Activity
             // TODO: https://developer.android.com/training/location/receive-location-updates.html
             // check for requesting location update is on.
             startLocationUpdates();
+
             mCurrentLocation = LocationServices.FusedLocationApi.getLastLocation(
                     mGoogleApiClient);
             if (mCurrentLocation != null) {
@@ -103,7 +106,7 @@ public class WaitingRoom extends Activity
                 mLatitudeText.setText(String.valueOf(mCurrentLocation.getLatitude()));
                 mLongitudeText.setText(String.valueOf(mCurrentLocation.getLongitude()));
                 mLastUpdateText.setText(DateFormat.getTimeInstance().format(new Date()));
-            }
+                }
         }
         catch (SecurityException e) {
 
@@ -135,6 +138,13 @@ public class WaitingRoom extends Activity
         mCurrentLocation = location;
         mLastUpdateTime = DateFormat.getTimeInstance().format(new Date());
         updateUI();
+        updateDatabase();
+    }
+    private void updateDatabase(){
+        ParseUser user = ParseUser.getCurrentUser();
+        ParseGeoPoint gp = new ParseGeoPoint(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude());
+        user.put("location", gp);
+        user.saveInBackground();
     }
 
     private void updateUI() {
