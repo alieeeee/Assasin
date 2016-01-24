@@ -196,11 +196,11 @@ public class WaitingRoom extends Activity
                     public void onClick(View v) {
                         Toast.makeText(getContext(), "Matching you with victim", Toast.LENGTH_SHORT).show();
 
-                        Intent match = new Intent("android.intent.action.MatchActivity");
-                        //Passing target info to match
-                        Bundle b = new Bundle();
-                        b.putString("target","38B8wq64nD");
-                        match.putExtras(b);
+                        Intent match = new Intent("android.intent.action.AssassinActivity");
+//                        //Passing target info to match
+//                        Bundle b = new Bundle();
+//                        b.putString("target","38B8wq64nD");
+//                        match.putExtras(b);
                         startActivity(match);
                     }
                 });

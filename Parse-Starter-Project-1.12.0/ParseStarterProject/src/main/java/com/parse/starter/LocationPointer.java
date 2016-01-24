@@ -48,6 +48,7 @@ public class LocationPointer implements SensorEventListener {
 
     //adjustArrow
     private void adjustArrow() {
+        
         if (arrowPointer == null) {
             Log.i(TAG, "arrow view is not set");
             return;
