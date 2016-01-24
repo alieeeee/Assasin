@@ -136,6 +136,7 @@ public class WaitingRoom extends Activity
 
     @Override
     protected void onStop(){
+        mGoogleApiClient.disconnect();
         super.onStop();
         user.put("availability", false);
     }
