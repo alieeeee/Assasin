@@ -20,15 +20,20 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.parse.FindCallback;
+import com.parse.FunctionCallback;
 import com.parse.LogInCallback;
 import com.parse.Parse;
+import com.parse.ParseCloud;
 import com.parse.ParseException;
 import com.parse.ParseGeoPoint;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ServiceConfigurationError;
 
@@ -80,14 +85,30 @@ public class WaitingRoom extends Activity
 
     protected void createLocationRequest() {
         mLocationRequest = new LocationRequest();
-        mLocationRequest.setInterval(2000);
-        mLocationRequest.setFastestInterval(1000);
+        mLocationRequest.setInterval(10000);
+        mLocationRequest.setFastestInterval(5000);
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
     }
 
     private void Refresh(int numOfUsers) {
+        String AustinId = "Pzg1gMmHDz";
+        ParseQuery<ParseUser> users = ParseUser.getQuery();
+        ParseQuery<ParseUser> Austin = users.whereEqualTo("objectId", AustinId);
+        Austin.findInBackground(new FindCallback<ParseUser>() {
+            public void done(List<ParseUser> a, ParseException e) {
+                if (e == null) {
+                    if (a.size() == 1) {
+                        ParseUser austin = a.get(0);
+                        ParseGeoPoint g = austin.getParseGeoPoint("location");
+                    }
+                } else {
+
+                }
+            }
+        });
 
     }
+
 
     private void generateListContent(int n){
         for(int i = 0; i < n; i++)
@@ -164,6 +185,14 @@ public class WaitingRoom extends Activity
         mLastUpdateTime = DateFormat.getTimeInstance().format(new Date());
         updateUI();
         updateDatabase();
+        if(user.getString("targeted") != null){
+            if(!user.getBoolean("availability")){
+                user.put("notificationFlag",null);
+            }
+            else{
+                // jump to TargetedActivity
+            }
+        }
     }
     private void updateDatabase(){
         ParseGeoPoint gp = new ParseGeoPoint(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude());

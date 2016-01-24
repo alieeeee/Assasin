@@ -35,7 +35,8 @@ import java.util.TimerTask;
 public class TargetedActivity extends Activity
         implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
     private BackgroundChange changeBackGroundColour;
-    private TimerTask game;private GoogleApiClient mGoogleApiClient;
+    private TimerTask game;
+    private GoogleApiClient mGoogleApiClient;
     private Location mCurrentLocation;
     TextView mLatitudeText;
     TextView mLongitudeText;
@@ -59,6 +60,7 @@ public class TargetedActivity extends Activity
         changeBackGroundColour = new BackgroundChange();
         changeBackGroundColour.root = (LinearLayout) findViewById(R.id.assassin_background);
         changeBackGroundColour.changeBackground(100);
+        game = new Game(user.getString("targeted"),null);
     }
 
     protected void createLocationRequest() {
@@ -89,12 +91,14 @@ public class TargetedActivity extends Activity
     protected void onStart() {
         mGoogleApiClient.connect();
         super.onStart();
+        game.run();
     }
 
     @Override
     protected void onStop() {
         mGoogleApiClient.disconnect();
         super.onStop();
+        game.cancel();
     }
 
     public void onConnected(Bundle bundle) throws SecurityException{
