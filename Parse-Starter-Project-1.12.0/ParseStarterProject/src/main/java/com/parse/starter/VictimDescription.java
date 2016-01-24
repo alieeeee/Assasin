@@ -23,4 +23,8 @@ import com.parse.ParseObject;
         public void setScore(int score){
             put("score", score);
         }
-    }
+
+        public String getId(){
+            return getString("objectId");
+        }
+}

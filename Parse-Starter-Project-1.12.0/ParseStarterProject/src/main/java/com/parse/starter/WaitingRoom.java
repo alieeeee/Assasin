@@ -135,6 +135,24 @@ public class WaitingRoom extends Activity
     }
 
     @Override
+    protected void onStop(){
+        super.onStop();
+        user.put("availability", false);
+    }
+
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        user.put("availability", false);
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        user.put("availability", true);
+    }
+
+    @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
         // TODO: Jeffery gonna implement this;
     }
