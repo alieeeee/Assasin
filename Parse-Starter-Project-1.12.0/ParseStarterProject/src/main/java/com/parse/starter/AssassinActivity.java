@@ -16,6 +16,7 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.RotateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 /**
  * Created by kuenj on 1/23/2016.
@@ -25,6 +26,7 @@ public class AssassinActivity extends Activity {
     private static final String TAG = "CompassActivity";
 
     private LocationPointer locationPointer;
+    private BackgroundChange changeBackGroundColour;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +34,10 @@ public class AssassinActivity extends Activity {
 
         locationPointer = new LocationPointer(this);
         locationPointer.arrowPointer = (ImageView) findViewById(R.id.arrow_picture);
+
+        changeBackGroundColour = new BackgroundChange();
+        changeBackGroundColour.root = (LinearLayout) findViewById(R.id.assassin_background);
+        changeBackGroundColour.changeBackground(100);
         };
 
     @Override

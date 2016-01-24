@@ -48,6 +48,8 @@ public class WaitingRoom extends Activity
     Button btRefresh;
     LocationRequest mLocationRequest;
     ParseUser user;
+    private int numberOfUsersOnline = 5;
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         setContentView(R.layout.waiting_room);
@@ -64,14 +66,14 @@ public class WaitingRoom extends Activity
         }
         btRefresh.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Refresh();
+                Refresh(numberOfUsersOnline);
             }
         });
         createLocationRequest();
         super.onCreate(savedInstanceState);
         ListView victimList = (ListView) findViewById(R.id.chooseVictimList);
 
-        generateListContent(10);
+        generateListContent(numberOfUsersOnline);
         victimList.setAdapter(new MyListAdapter(this, R.layout.victim_list_item, data));
         //ArrayAdapter<String> chooseVictimListAdapter = new ArrayAdapter<String>(this, android.R.layout.victim_list_item, )
     }
@@ -83,7 +85,7 @@ public class WaitingRoom extends Activity
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
     }
 
-    private void Refresh() {
+    private void Refresh(int numOfUsers) {
 
     }
 
