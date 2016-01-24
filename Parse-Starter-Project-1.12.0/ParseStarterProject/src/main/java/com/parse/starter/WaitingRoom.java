@@ -47,9 +47,13 @@ public class WaitingRoom extends Activity
     String mLastUpdateTime;
     Button btRefresh;
     LocationRequest mLocationRequest;
+    ParseUser user;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         setContentView(R.layout.waiting_room);
+        user = ParseUser.getCurrentUser();
+        user.put("availability", true);
+        user.saveInBackground();
         btRefresh = (Button)findViewById(R.id.refresh);
         if (mGoogleApiClient == null) {
             mGoogleApiClient = new GoogleApiClient.Builder(this)
@@ -141,7 +145,6 @@ public class WaitingRoom extends Activity
         updateDatabase();
     }
     private void updateDatabase(){
-        ParseUser user = ParseUser.getCurrentUser();
         ParseGeoPoint gp = new ParseGeoPoint(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude());
         user.put("location", gp);
         user.saveInBackground();

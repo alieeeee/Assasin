@@ -61,7 +61,7 @@ public class LocationPointer implements SensorEventListener {
                 0.5f);
         correctAzimuth = azimuth;
 
-        an.setDuration(500);
+        an.setDuration(100);
         an.setRepeatCount(0);
         an.setFillAfter(true);
 
