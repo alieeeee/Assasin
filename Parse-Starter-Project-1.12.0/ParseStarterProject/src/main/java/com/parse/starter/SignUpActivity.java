@@ -11,7 +11,6 @@ import android.widget.Toast;
 
 import com.parse.Parse;
 import com.parse.ParseException;
-import com.parse.ParseGeoPoint;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
@@ -107,7 +106,6 @@ public class SignUpActivity extends Activity {
                     Toast.makeText(SignUpActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
                 }
                 else {
-                    // ParseUser
                     startActivity(new Intent("android.intent.action.LoginPage"));
                 }
             }

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Path;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -18,6 +19,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import java.util.TimerTask;
+
 /**
  * Created by kuenj on 1/23/2016.
  */
@@ -27,6 +30,7 @@ public class AssassinActivity extends Activity {
 
     private LocationPointer locationPointer;
     private BackgroundChange changeBackGroundColour;
+    private TimerTask game;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,10 +39,18 @@ public class AssassinActivity extends Activity {
         locationPointer = new LocationPointer(this);
         locationPointer.arrowPointer = (ImageView) findViewById(R.id.arrow_picture);
 
-        changeBackGroundColour = new BackgroundChange();
-        changeBackGroundColour.root = (LinearLayout) findViewById(R.id.assassin_background);
-        changeBackGroundColour.changeBackground(100);
+//       changeBackGroundColour = new BackgroundChange();
+//       changeBackGroundColour.root = (LinearLayout) findViewById(R.id.assassin_background);
+//       changeBackGroundColour.changeBackground(100);
         };
+
+    public void updateUI(double direction){
+
+    }
+
+    public void updateServer() {
+
+    }
 
     @Override
     protected void onStart() {
